@@ -483,3 +483,4 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 Actividad01.Client/wwwroot/bootstrap
+Actividad01.Api/students.db*
