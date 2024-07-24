@@ -25,8 +25,22 @@ public class StudentService : IStudentService
     public async Task<List<Student>> GetAllAsync()
     {
         _logger.LogInformation($"{nameof(GetAllAsync)}---{_httpClient.BaseAddress}");
-        var response = await _httpClient.GetAsync("api/Students");
-        return await response.Content.ReadFromJsonAsync<List<Student>>() ?? [];
+        try
+        {
+            var response = await _httpClient.GetAsync("api/Students");
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadFromJsonAsync<List<Student>>() ?? [];
+            }
+
+            _logger.LogWarning("Could not read results");
+            return [];
+        }
+        catch
+        {
+            _logger.LogError("Cannot get students");
+            return [];
+        }
         // return await _client.GetFromJsonAsync<List<Student>>("students") ?? [];
     }
 

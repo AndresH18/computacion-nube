@@ -70,7 +70,7 @@ Welcome to your new app.
         Logger.LogInformation(nameof(OnValidSubmit));
         await Service.CreateAsync(Student);
         Student = new Student();
-        // await LoadData();
+        await LoadData();
     }
 
     private async Task LoadData()
