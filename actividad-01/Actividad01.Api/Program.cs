@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StudentDb>(opt =>
-    opt.UseSqlite(builder.Configuration.GetConnectionString("StudentsDb")));
+    // opt.UseSqlite(builder.Configuration.GetConnectionString("StudentsDb")));
+    opt.UseMySQL(builder.Configuration.GetConnectionString("MySql")!));
 builder.Services.AddScoped<StudentRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
