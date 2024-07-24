@@ -17,11 +17,18 @@ builder.Services.AddSwaggerGen();
 // for testing purposes. Never disable CORS policy
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(
-        static builder => builder
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+    // options.AddDefaultPolicy(
+    //     static builder => builder
+    //         .AllowAnyOrigin()
+    //         .AllowAnyMethod()
+    //         .AllowAnyHeader());
+    options.AddPolicy("allow-all",
+        static builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
 });
 
 var app = builder.Build();
@@ -39,7 +46,7 @@ using (var scope = app.Services.CreateScope())
     db.Database.EnsureCreated();
 }
 
-app.UseCors();
+app.UseCors("allow-all");
 
 app.UseHttpsRedirection();
 
