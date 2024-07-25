@@ -1,0 +1,15 @@
+﻿
+[Unit]
+Description="My api service"
+After=network.target
+
+[Service]
+WorkingDirectory=/var/api
+ExecStart=dotnet Actividad01.Api.dll
+Restart=always
+RestartSec=10
+SyslogIdentifier=my_api
+User=ubuntu
+
+[Install]
+WantedBy=multi-user.target
