@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env bash
+#!/usr/bin/env bash
 
 # Check if the required arguments are passed
 if [ $# -lt 2 ]; then
@@ -26,7 +26,8 @@ dotnet restore
 # publish project
 dotnet publish
 
-# create service folder in /var/
+# create service folder in /var/, remove older
+rm /var/"${SERVICE_FOLDER:?}" -r
 mkdir /var/"$SERVICE_FOLDER"
 # copy publish to service folder
-cp bin/Release/net8.0/publish/ /var/"$SERVICE_FOLDER"
+cp -r bin/Release/net8.0/publish/* /var/"$SERVICE_FOLDER" 
