@@ -4,6 +4,10 @@
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <!-- Unless specific stated, host it in aspnet core -->
+    <PropertyGroup Condition=" $(ASPNET_WASM_HOSTED) != 'false'">
         <!-- 
         Have this when we want to host it somewhere that is not root level. "wasm" is used here as the path. 
         We also need this on the host:
