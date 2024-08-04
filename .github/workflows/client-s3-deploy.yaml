@@ -27,7 +27,7 @@ jobs:
       - name: "Publish with .NET"
         run: dotnet publish TodoApp.Client --configuration Release --output build
       - name: Replace base tag
-        run: sed -i 's/<base href="[^"]*"/<base href=""/g' build/wwwroot/index.html
+        run: sed -i 's/<base href="[^"]*"/<base href="\/"/g' build/wwwroot/index.html
       - name: Copy index to 404
         run: cp build/wwwroot/index.html build/wwwroot/404.html
       - name: Upload Artifact
@@ -53,6 +53,8 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }} 
+      - name: Clean S3 bucket 
+        run: aws s3 rm s3://${{ env.AWS_BUCKET_NAME }}/ --recursive
       - name: Upload to S3 bucket
         run: |
           cd ${{ env.ARTIFACT_FOLDER }}
