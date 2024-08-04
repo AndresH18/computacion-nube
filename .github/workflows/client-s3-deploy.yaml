@@ -7,7 +7,7 @@ env:
   ARTIFACT_FOLDER: artifacts
   ARTIFACT_NAME: TodoApp
   AWS_REGION: us-east-1
-  AWS_BUCKET_NAME: "clase-nube-s3"
+  AWS_BUCKET_NAME: "todo-app-nube"
   ASPNET_WASM_HOSTED: false # disable aspnet core hosted <StaticWebAssetBasePath> tag
 
 jobs:
