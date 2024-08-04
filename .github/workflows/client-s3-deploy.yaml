@@ -7,7 +7,7 @@ env:
   ARTIFACT_FOLDER: artifacts
   ARTIFACT_NAME: TodoApp
   AWS_REGION: us-east-1
-  AWS_BUCKET_NAME: bucket
+  AWS_BUCKET_NAME: "clase-nube-s3"
   ASPNET_WASM_HOSTED: false # disable aspnet core hosted <StaticWebAssetBasePath> tag
 
 jobs:
@@ -55,5 +55,5 @@ jobs:
           aws-region: ${{ env.AWS_REGION }} 
       - name: Upload to S3 bucket
         run: |
-          cd $ARTIFACT_FOLDER
-          aws s3 cp . s3://$"AWS_BUCKET_NAME"/ --recursive
+          cd ${{ env.ARTIFACT_FOLDER }}
+          aws s3 cp . s3://${{ env.AWS_BUCKET_NAME }}/ --recursive
